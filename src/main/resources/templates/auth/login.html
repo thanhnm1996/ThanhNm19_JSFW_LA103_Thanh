@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <title>Login</title>
+    <style>
+        .bg {
+            background-color: rgb(221, 221, 221);
+        }
+
+        .bg2 {
+            background-color: rgb(236, 236, 236);
+        }
+
+        .bg3 {
+            background-color: rgb(3, 182, 3);
+        }
+
+        .error-border {
+            border-color: red;
+        }
+    </style>
+</head>
+
+<body>
+<div class="container-fluid bg">
+    <div class="flex-column justify-content-center align-content-center vh-100 bg-light row">
+        <div class="shadow border border-muted border-bottom-0 rounded-top col-11 col-sm-6 col-lg-4 col bg2">
+            <h1 class="fw-normal fs-3 pt-2">Please Sign In</h1>
+            <p th:if="${successMessage}" th:text="${successMessage}" class="text-success"></p>
+
+        </div>
+        <div class="shadow border border-muted border-top-0 rounded-bottom col-11 col-sm-6 col-lg-4 col bg-light">
+            <form class="" name="user-form" method="post"
+                  th:action="@{/authentication}"
+                  th:object="${memberLoginDto}" >
+                <div class="mb-3 mt-3" id="inputEmail">
+                    <input id="email" type="text" th:field="*{email}" placeholder="Email" required class="form-control" />
+                </div>
+                <div class="mb-3" id="inputPassword">
+                    <input type="password" class="form-control" th:field="*{password}"  placeholder="Password"
+                           autocomplete="current-password">
+                </div>
+<!--                <div class="mb-3">-->
+<!--                    <input class="form-check-input" type="checkbox" value="" id="rmb-me">-->
+<!--                    <label class="form-check-label" for="rmb-me">-->
+<!--                        Remember me-->
+<!--                    </label>-->
+<!--                </div>-->
+                <div class="mb-3">
+                    <button type="submit" class="btn btn-primary w-100 btn-success bg3">Login</button>
+                </div>
+                <div class="mb-3">
+                    <a th:href="@{/register}" class="text-decoration-none">Click here to register</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+</body>
+
+</html>

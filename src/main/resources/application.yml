@@ -1,0 +1,17 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/jsfw_la103?createDatabaseIfNotExist=true
+    username: root
+    password: 1234
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+
+server:
+  port: 8080
+
+#app:
+#  file:
+#    location: 'D:/FPT_Course/Spring/static-resource'

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+  <title>Register</title>
+  <style>
+    .bg {
+      background-color: rgb(221, 221, 221);
+    }
+
+    .bg2 {
+      background-color: rgb(236, 236, 236);
+    }
+    .bg3 {
+      background-color: rgb(3, 182, 3);
+    }
+    .error-border {
+      border-color: red;
+    }
+  </style>
+</head>
+
+<body>
+<div class="container-fluid bg">
+  <div class="flex-column justify-content-center align-content-center vh-100 bg-light row">
+    <div class="shadow border border-muted border-bottom-0 rounded-top col-11 col-sm-6 col-lg-4 col bg2">
+      <h1 class="fw-normal fs-3 pt-2">Register</h1>
+      <p th:if="${successMessage}" th:text="${successMessage}" ></p>
+    </div>
+    <div class="shadow border border-muted border-top-0 rounded-bottom col-11 col-sm-6 col-lg-4 col bg-light">
+      <form  name="user-form" th:action="@{/register}"
+             th:object="${memberRegisterDto}" method="post">
+        <div class="mb-3 mt-3" id="inputUsername">
+          <input type="text" class="form-control" th:field="*{userName}" placeholder="Username">
+          <span class="text-danger" th:errors="*{userName}"></span>
+        </div>
+        <div class="mb-3" id="inputEmail">
+          <input type="email" class="form-control" th:field="*{email}" placeholder="Email">
+          <span class="text-danger" th:errors="*{email}"></span>
+
+        </div>
+        <div class="mb-3" id="inputPassword">
+          <input type="password" class="form-control" th:field="*{password}" placeholder="Password">
+          <span class="text-danger" th:errors="*{password}"></span>
+
+        </div>
+        <div class="mb-3" id="inputRePassword">
+          <input type="password" class="form-control" th:field="*{rePassword}" placeholder="Re Password">
+          <span class="text-danger" th:errors="*{rePassword}" ></span>
+        </div>
+
+        <div class="mb-3">
+          <button type="submit" class="btn btn-primary w-100 btn-success bg3">Register</button>
+        </div>
+        <div class="mb-3">
+          <a th:href="@{/login}" class="text-decoration-none">Click here to login</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+        crossorigin="anonymous">
+</script>
+<!--<script>-->
+<!--  function validateForm(){-->
+<!--    let valid1 = validateUser()-->
+<!--    let valid2 = validateEmail()-->
+<!--    let valid3 = validatePassword()-->
+<!--    let valid4 = validateRePassword()-->
+<!--    return (valid1 && valid2 && valid3 && valid4);-->
+<!--  }-->
+<!--  function validateUser(){-->
+<!--    let username = document.forms["user-form"]["username"].value.trim();-->
+<!--    let valid = true;-->
+<!--    removeClass(`errorinputUsername`)-->
+<!--    document.getElementById("username").classList.remove("error-border")-->
+<!--    if (!username) {-->
+<!--      valid = false;-->
+<!--      alertErrorMsg("inputUsername","Username field must not be empty!");-->
+<!--    }-->
+<!--    else if (username.length < 3 || username.length > 30) {-->
+<!--      valid = false;-->
+<!--      alertErrorMsg("inputUsername","Username must be between 3 and 30 characters!");-->
+<!--    }-->
+<!--    if (!valid) {-->
+<!--      document.getElementById("username").classList.add("error-border")-->
+<!--    }-->
+<!--    return valid;-->
+<!--  }-->
+<!--  function validateEmail(){-->
+<!--    let email = document.forms["user-form"]["email"].value.trim();-->
+<!--    let valid = true;-->
+<!--    const emailFormat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;-->
+<!--    removeClass(`errorinputEmail`)-->
+<!--    document.getElementById("email").classList.remove("error-border")-->
+<!--    if (!email) {-->
+<!--      valid = false;-->
+<!--      alertErrorMsg("inputEmail","Email field must not be empty!");-->
+<!--    }-->
+<!--    else if (!emailFormat.test(email)) {-->
+<!--      valid = false;-->
+<!--      alertErrorMsg("inputEmail","Invalid email format (abc@gmail.com)!");-->
+<!--    }-->
+<!--    else if (email.length < 5) {-->
+<!--      valid = false;-->
+<!--      alertErrorMsg("inputEmail","Email must be more than 5 characters!");-->
+<!--    }-->
+<!--    if (!valid) {-->
+<!--      document.getElementById("email").classList.add("error-border")-->
+<!--    }-->
+<!--    return valid;-->
+<!--  }-->
+<!--  function validatePassword(){-->
+<!--    let password = document.forms["user-form"]["password"].value.trim()-->
+<!--    let valid = true;-->
+<!--    removeClass(`errorinputPassword`)-->
+<!--    document.getElementById("password").classList.remove("error-border")-->
+<!--    if(!password){-->
+<!--      valid = false-->
+<!--      alertErrorMsg("inputPassword","Password field must not be empty!")-->
+<!--    }-->
+<!--    else if(password.length < 8 || password.length > 30){-->
+<!--      valid = false;-->
+<!--      alertErrorMsg("inputPassword","Password must be between 8 and 30 characters!");-->
+<!--    }-->
+<!--    if (!valid) {-->
+<!--      document.getElementById("password").classList.add("error-border")-->
+<!--    }-->
+<!--    return valid;-->
+<!--  }-->
+<!--  function validateRePassword(){-->
+<!--    let password = document.forms["user-form"]["re-password"].value.trim()-->
+<!--    let valid = true;-->
+<!--    const check = document.forms["user-form"]["password"].value.trim()-->
+<!--    removeClass(`errorinputRePassword`)-->
+<!--    document.getElementById("re-password").classList.remove("error-border")-->
+<!--    if(!password){-->
+<!--      valid = false-->
+<!--      alertErrorMsg("inputRePassword","Password field must not be empty!")-->
+<!--    }-->
+<!--    else if(check != password){-->
+<!--      valid = false;-->
+<!--      alertErrorMsg("inputRePassword","Does not match password entered previously");-->
+<!--    }-->
+<!--    if (!valid) {-->
+<!--      document.getElementById("re-password").classList.add("error-border")-->
+<!--    }-->
+<!--    return valid;-->
+<!--  }-->
+<!--  function removeClass(elementClass){-->
+<!--    if(document.getElementsByClassName(elementClass)[0]) {-->
+<!--      document.getElementsByClassName(elementClass)[0].remove()-->
+<!--    }-->
+<!--  }-->
+<!--  function alertErrorMsg(elementId,error){-->
+<!--    document.getElementById(elementId).innerHTML=`<p class="error${elementId} m-0" style="color:red;">${error}</p>`-->
+<!--            + document.getElementById(elementId).innerHTML;-->
+<!--  }-->
+<!--</script>-->
+</body>
+
+</html>

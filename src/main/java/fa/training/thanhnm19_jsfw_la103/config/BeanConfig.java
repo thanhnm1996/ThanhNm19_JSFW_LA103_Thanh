@@ -1,0 +1,9 @@
+package fa.training.thanhnm19_jsfw_la103.config;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
+
+@Configuration
+@EnableJpaAuditing(auditorAwareRef = "jpaAuditorAware")
+public class BeanConfig {
+
+}

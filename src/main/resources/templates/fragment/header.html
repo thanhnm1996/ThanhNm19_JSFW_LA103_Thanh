@@ -1,0 +1,21 @@
+<ul class="nav justify-content-between border-bottom border-muted bg-light row">
+    <li class="nav-item w-50">
+        <!-- aria-current="page"  -->
+        <span class="nav-link active text-muted " href="#">CMS</span>
+    </li>
+    <li class="dropdown nav-item w-50 d-flex">
+        <button class="btn btn-light dropdown-toggle ms-auto" type="button" id="dropdownMenuButton1"
+                data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="fa-solid fa-user"></i>
+        </button>
+        <ul class="dropdown-menu shadow rounded-1" aria-labelledby="dropdownMenuButton1">
+            <li><a class="dropdown-item border-bottom border-muted" th:href="@{/members}"><i class="fa-solid fa-user"></i>
+                User Profile</a></li>
+            <li>
+                <form class="dropdown-item" th:action="@{/logout}" method="post">
+                    <button type="submit"><i class="fa fa-right-from-bracket"></i>Logout</button>
+                </form>
+            </li>
+        </ul>
+    </li>
+</ul>
